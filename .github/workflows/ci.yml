@@ -14,6 +14,18 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_PASSWORD: admin
+          POSTGRES_USER: root
+          POSTGRES_DB: simple_bank
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - uses: actions/checkout@v4
 
@@ -25,6 +37,9 @@ jobs:
 
     - name: Checkout code into the Go module directory
       uses: actions/checkout@v2
+    
+    - name: Run migration
+      run: make migrateup
 
     - name: Set build
       run: go build -v ./...
