@@ -1,4 +1,4 @@
-.PHONY: createdb dropdb migrateup migratedown postgres sqlc test
+.PHONY: createdb dropdb migrateup migratedown postgres sqlc test mock server
 
 DB_CONTAINER=d3d89de55d86
 DB_NAME=simple_bank
@@ -24,3 +24,9 @@ test:
 
 sqlc:
 	sqlc generate
+
+mock:
+	mockgen -package mockdb -destination db/mock/store.go github.com/dorasaicu12/simplebank/db/sqlc Store
+
+server:
+	go run main.go
