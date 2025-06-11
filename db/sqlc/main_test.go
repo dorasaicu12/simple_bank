@@ -12,7 +12,7 @@ var testQueries *Queries
 var testDB *sql.DB
 
 const (
-	dbDriver = "postgresfsdfsfsdfdsf"
+	dbDriver = "postgres"
 	dbSource = "postgres://root:admin@localhost:5432/simple_bank?sslmode=disable"
 )
 
