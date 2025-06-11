@@ -1,7 +1,9 @@
 package util
 
 import (
+	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/spf13/viper"
@@ -16,16 +18,25 @@ type Config struct {
 }
 
 func LoadConfig(path string) (config Config, err error) {
-	viper.AddConfigPath(path)
-	viper.SetConfigName(".env")
-	viper.SetConfigType("env")
+    viper.AddConfigPath(path)
+    viper.SetConfigName(".env")
+    viper.SetConfigType("env")
 
-	viper.AutomaticEnv()
-	err = viper.ReadInConfig()
-	if err != nil {
-		log.Fatal("err config evn", err.Error())
-		return
-	}
-	viper.Unmarshal(&config)
-	return
+    viper.AutomaticEnv()
+    err = viper.ReadInConfig()
+    if err != nil {
+        log.Fatal("err config evn", err.Error())
+        return
+    }
+    err = viper.Unmarshal(&config)
+    if err != nil {
+        return
+    }
+    // Trim spaces manually
+    config.DBDriver = strings.TrimSpace(config.DBDriver)
+    config.DBSource = strings.TrimSpace(config.DBSource)
+    config.ServerAddress = strings.TrimSpace(config.ServerAddress)
+    config.TokenSymmectricKey = strings.TrimSpace(config.TokenSymmectricKey)
+fmt.Println("DB Driver:", config.DBDriver)
+    return
 }
