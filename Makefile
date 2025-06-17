@@ -2,7 +2,7 @@
 
 DB_CONTAINER=d3d89de55d86
 DB_NAME=simple_bank
-DB_URL=postgres://root:admin@localhost:5432/$(DB_NAME)?sslmode=disable
+DB_URL=postgres://root:ZsbUtgSTLI68JdgOR4jq@simple-bank.chwcewcwcq07.ap-southeast-2.rds.amazonaws.com:5432/$(DB_NAME)
 
 createdb:
 	docker exec -it $(DB_CONTAINER) createdb --username=root --owner=root $(DB_NAME)
