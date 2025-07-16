@@ -54,3 +54,5 @@ jobs:
     - name: Set build
       run: go build -v ./...
 
+    # - name: Test
+    #   run: make test
