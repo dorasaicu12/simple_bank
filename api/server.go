@@ -46,6 +46,11 @@ func (s *Server) setupRoute() *gin.Engine {
 	router.POST("/users", s.createUser)
 	router.POST("/users/login", s.LoginUser)
 
+	router.GET("/yeu-em", func(c *gin.Context) {
+		c.Data(200, "text/html; charset=utf-8", []byte("<h1 style=\"text-align:center;\">Yêu em nhiều</h1>"))
+	})
+
+
 	authRoutes := router.Group("/").Use(authMiddleware(s.tokenMaker))
 	authRoutes.POST("/account", s.createAccount)
 	authRoutes.GET("/account/:id", s.getAccount)
