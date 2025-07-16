@@ -10,6 +10,9 @@ data:
       groups:
         - system:masters
   mapRoles: |
-    []
+    - rolearn: arn:aws:iam::626635403238:role/simple_role
+      username: simple_role
+      groups:
+        - system:masters
   mapAccounts: |
     []
