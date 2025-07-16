@@ -55,9 +55,7 @@ jobs:
 
       - name: Update kubeconfig for Amazon EKS
         run: |
-          aws eks update-kubeconfig \
-            --region ap-southeast-2 \
-            --name YOUR_CLUSTER_NAME
+          aws eks update-kubeconfig --region ap-southeast-2  --name test-new-type
 
       - name: Deploy image to Amazon EKS
         run: |
