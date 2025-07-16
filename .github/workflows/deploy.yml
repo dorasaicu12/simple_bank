@@ -25,9 +25,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::626635403238:role/simple_role
+          aws-access-key-id: AKIAZDZTBN7TI7XD65VI
+          aws-secret-access-key: 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
           aws-region: ap-southeast-2
-          audience: sts.amazonaws.com
+
 
       - name: Debug identity
         run: aws sts get-caller-identity
