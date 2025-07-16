@@ -45,7 +45,7 @@ jobs:
       - name: Update kubeconfig for Amazon EKS
         run: |
           aws eks update-kubeconfig --name test-new-type --region ap-southeast-2
-          aws eks get-token
+          aws eks get-token --cluster-name test-new-type
           cat ~/.kube/config
           kubectl cluster-info
 
