@@ -29,6 +29,11 @@ jobs:
           aws-secret-access-key: soAmgiRGcBu49138Yuxy3IfyyCFMs9aWiEGRRLgr
           aws-region: ap-southeast-2
 
+      - name: Verify AWS CLI Login (Optional)
+        run: |
+          echo "Verifying AWS CLI configuration..."
+          aws sts get-caller-identity
+          echo "AWS CLI configured successfully."
 
       - name: Debug identity
         run: aws sts get-caller-identity
