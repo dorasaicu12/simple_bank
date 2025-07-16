@@ -44,10 +44,26 @@ jobs:
 
       - name: Update kubeconfig for Amazon EKS
         run: |
+          echo "--- Running aws eks update-kubeconfig ---"
           aws eks update-kubeconfig --name test-new-type --region ap-southeast-2
-          aws eks get-token --cluster-name test-new-type
+
+          echo "--- Kubeconfig content ---"
           cat ~/.kube/config
-          kubectl cluster-info
+
+          echo "--- Kiểm tra trực tiếp lệnh lấy EKS token (CỰC KỲ QUAN TRỌNG) ---"
+          # Chạy lệnh get-token và chuyển hướng output lỗi (stderr) sang stdout
+          # để chúng ta có thể thấy nó trong log của GitHub Actions.
+          # `|| true` đảm bảo bước này không fail job ngay lập tức nếu lệnh get-token lỗi.
+          aws eks get-token --cluster-name test-new-type --region ap-southeast-2 2>&1 | tee eks_get_token_raw_output.txt || true
+
+          echo "--- Nội dung file eks_get_token_raw_output.txt ---"
+          cat eks_get_token_raw_output.txt
+
+          echo "--- Chạy kubectl cluster-info (để xem lỗi sau khi cố gắng lấy token) ---"
+          kubectl cluster-info || true
+
+          echo "--- Chạy kubectl get nodes --v=9 (để debug sâu hơn) ---"
+          kubectl get nodes --v=9 || true
 
       - name: Load secrets from AWS Secrets Manager
         run: |
