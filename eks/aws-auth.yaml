@@ -4,15 +4,18 @@ metadata:
   name: aws-auth
   namespace: kube-system
 data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::626635403238:role/simple_role
+      username: simple_role
+      groups:
+        - system:bootstrappers
+        - system:nodes
   mapUsers: |
     - userarn: arn:aws:iam::626635403238:user/xicoi1033
       username: xicoi1033
       groups:
         - system:masters
-  mapRoles: |
-    - rolearn: arn:aws:iam::626635403238:role/simple_role
-      username: simple_role
-      groups:
-        - system:masters
   mapAccounts: |
-    []
+        - "111122223333"
+
+    
