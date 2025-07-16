@@ -36,6 +36,12 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Update kubeconfig for Amazon EKS
+        run: |
+          aws eks update-kubeconfig --name test-new-type --region ap-southeast-2
+          kubectl config view
+          kubectl cluster-info
+
       - name: Load secrets from AWS Secrets Manager
         run: |
           aws secretsmanager get-secret-value --secret-id simple_bank \
@@ -52,12 +58,6 @@ jobs:
                        -t $REGISTRY/$REPOSITORY:latest .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
           docker push $REGISTRY/$REPOSITORY:latest
-
-      - name: Update kubeconfig for Amazon EKS
-        run: |
-          aws eks update-kubeconfig --name test-new-type --region ap-southeast-2
-          kubectl config view
-          kubectl cluster-info
 
       - name: Deploy image to Amazon EKS
         run: |
