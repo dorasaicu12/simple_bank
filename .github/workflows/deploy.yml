@@ -84,6 +84,7 @@ jobs:
 
       - name: Deploy image to Amazon EKS
         run: |
+          kubectl delete pod -l app=simple-bank-api
           kubectl apply -f eks/aws-auth.yaml
           kubectl apply -f eks/deployment.yaml
           kubectl apply -f eks/service.yaml
