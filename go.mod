@@ -1,6 +1,8 @@
 module github.com/dorasaicu12/simplebank
 
-go 1.22.0
+go 1.23
+
+toolchain go1.23.11
 
 require (
 	github.com/aead/chacha20poly1305 v0.0.0-20201124145622-1a5aba2a8b29
@@ -12,6 +14,7 @@ require (
 	github.com/lib/pq v1.10.9
 	github.com/o1egl/paseto v1.0.0
 	github.com/spf13/viper v1.20.1
+	go.uber.org/mock v0.5.2
 	golang.org/x/crypto v0.32.0
 )
 

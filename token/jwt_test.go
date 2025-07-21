@@ -22,7 +22,7 @@ func TestJWTMake(t *testing.T) {
 
 	require.NoError(t,err)
 
-	token,err := maker.CreateToken(username,duration)
+	token,_,err := maker.CreateToken(username,duration)
 	require.NoError(t,err)
 
 	paylod,err := maker.VerifyToken(token)
@@ -49,7 +49,7 @@ func TestTokenExpired(t *testing.T) {
 
 	require.NoError(t,err)
 
-	token,err := maker.CreateToken(username,duration)
+	token,_,err := maker.CreateToken(username,duration)
 	require.NoError(t,err)
 
 	paylod,err := maker.VerifyToken(token)
