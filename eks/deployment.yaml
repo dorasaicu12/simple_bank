@@ -21,9 +21,3 @@ spec:
         ports:
         - containerPort: 8080
         - containerPort: 9090
-
-      - name: simple-bank-grpc
-        image: 626635403238.dkr.ecr.ap-southeast-2.amazonaws.com/simplebank:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 9090
