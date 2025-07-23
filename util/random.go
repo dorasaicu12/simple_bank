@@ -46,6 +46,7 @@ func RandomCurrency() string {
 	return currency[rand.Intn(n)]
 }
 
+
 func RandomEmail() string {
 	return fmt.Sprintf("%s@email.com",RandomString(6))
 }
